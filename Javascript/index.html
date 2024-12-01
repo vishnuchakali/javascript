@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script >
+         /* 1.How do you create an object car with properties like brand, model, and year and access them to print their values? */
+        let car = {
+            brand:"Toyota",
+            model:2015,
+            year:2024,
+        }
+        console.log(car.brand);
+        console.log(car.model);
+        console.log(car.year);
+
+       /* 2.How can you add properties to an empty object person and then delete a specific property? */
+        let person = {}
+        person.name="vishnu",
+        person.age=21,
+        person.salary=20000,
+        console.log(person);
+
+        /* 3.What approach would you use to check if a specific property exists in an object like book? */
+        let book = {title:"JavaScript",author:"John Doe",Duration:"1 month"}
+        console.log("title" in book);
+        console.log("author" in book);
+        console.log("pages of book" in book);
+
+        /* 4.How can you iterate through all properties of an object student and print their key-value pairs?*/
+        let object = { name : "Vishnu" , batch : "Java" }
+        for(let key in object){
+            console.log(key +" : "+ object[key])
+        }
+
+        /* 5.How do you write a function that counts the number of properties in an object? */
+        function count(obj) {
+        return Object.keys(obj).length;
+        }
+        let student = { name:"vishnu",age:21,Marks:100};
+        console.log(count(student));
+
+        /* 6.How can you add methods like add and subtract to an object calculator that use its properties to perform calculations?*/
+        let calculator = {
+        num1: 10,
+        num2: 5,
+        add() {
+        return this.num1 + this.num2;
+        },
+        subtract() {
+        return this.num1 - this.num2;
+        }
+        };
+        console.log(calculator.add());       
+        console.log(calculator.subtract());
+
+        /* 7.There are multiple ways to clone an object in JavaScript */
+        let user = { name: "Alice", age: 30 };
+        let clonedUser = { ...user };
+        console.log(clonedUser);
+
+        /* 8.How can you merge two objects, userInfo1 and userInfo2, into a new object while resolving property conflicts?
+        let mergedUser1 = { ...userInfo1, ...userInfo2 }
+        let mergedUser2 = Object.assign({}, userInfo1, userInfo2);*/
+
+        /* 9.How do you create a function that generates an object with default values if certain properties are not provided? */
+        function createObjectWithDefaults(options = {}) {
+            let defaults = { name: "Unknown", age: 0, country: "Unknown" };
+            return { ...defaults, ...options };
+        }
+        console.log(createObjectWithDefaults({ name: "Alice", age: 25 }));
+
+        /* 10.What is the best way to structure an object company with nested arrays of objects representing employees? */
+        let company = {
+        name: "Tech Corp",
+        departments: [
+        {
+        name: "Engineering",
+        employees: [
+        { name: "Alice", role: "Software Engineer" },
+        { name: "Bob", role: "DevOps Engineer" }
+        ]
+        },
+        {
+        name: "HR",
+        employees: [
+        { name: "Charlie", role: "HR Manager" },
+        { name: "Diana", role: "Recruiter" }
+                ]
+             }
+            ]
+        };
+        console.log(company);
+
+        /* 11.How can you extract all the keys or values of an object like fruitPrices into arrays?*/
+        let fruitPrices = { apple: 2, banana: 1, cherry: 3 };
+        let keys = Object.keys(fruitPrices);
+        console.log(keys); 
+        let values = Object.values(fruitPrices);
+        console.log(values);
+
+        /* 12.How do you write a function to sort the properties of an object salaries based on their values?*/
+        function sortPropertiesByValues(obj) {
+         return Object.entries(obj)
+        .sort(([, valueA], [, valueB]) => valueA - valueB) 
+        .reduce((acc, [key, value]) => {
+            acc[key] = value;
+            return acc;
+             }, {});
+        }
+        let salaries = { John: 30000, Alice: 25000, Bob: 35000 };
+        let sortedSalaries = sortPropertiesByValues(salaries);
+        console.log(sortedSalaries);
+
+        /* 13.What is object destructuring, and how can it be used to extract values from an object user?*/
+        let user1 = { name: "Alice", age: 25, city: "New York" };
+        let { name, age } = user1;
+        console.log(name); 
+        console.log(age);
+
+        
+        /* 14.How can you destructure a nested object like person to access deeply nested properties? 
+        let person1 = {
+        name: "Bob",
+        address: {
+        city: "London",
+        zip: { code: "SW1A 1AA", country: "UK" }
+            }
+        };
+
+        let {
+        address: {
+        zip: { code, country }
+            }
+        } = person;
+
+          
+        console.log(code);    
+        console.log(country);*/
+
+       
+        /* 15.How can you merge two objects using the spread syntax, and what is its advantage over other methods?*/
+        let obj1 = { name: "Alice", age: 25 };
+        let obj2 = { age: 30, city: "New York" };
+        let merged = { ...obj1, ...obj2 };
+        console.log(merged);
+
+         
+        /* 16.What happens when you use Object.freeze() on an object, and how can you verify that it works?*/
+        let obj = { name: "Alice", age: 25 };
+        Object.freeze(obj);
+        obj.age = 30; 
+        obj.city = "New York"; 
+        delete obj.name; 
+        console.log(obj); 
+        console.log(Object.isFrozen(obj)); 
+
+        /* 17.How can you use Object.entries() to convert an object into an array of key-value pairs?*/
+        let fruitPricess = { apple: 2, banana: 1, cherry: 3 };
+        let entries = Object.entries(fruitPricess);
+        console.log(entries);
+        entries.forEach(([key, value]) => {
+        console.log(`${key}: ${value}`);
+        });
+
+        /* 18.How do you write a function to modify the values of an object like team by a given increment?*/
+        function modifyValues(obj, increment) {
+        for (let key in obj) {
+        if (typeof obj[key] === "number") {
+            obj[key] += increment;
+                }
+            }
+        }
+        let team = { Alice: 5, Bob: 8, Charlie: 10 };
+        modifyValues(team, 2);
+        console.log(team);
+
+        /* 19.How can you use the this keyword in an object method to refer to the object's properties?*/
+        let cars = {
+            brand: "Tesla",
+            speed: 60,
+            accelerate(amount) {
+                this.speed += amount;
+                    console.log(`${this.brand} is now going at ${this.speed} km/h.`);
+                        }
+                    };
+
+        cars.accelerate(20);
+
+        /* 20.How can you find the property with the highest value in an object like products and return its key?*/
+        function findHighestValueKey(obj) {
+        let maxKey = null;
+        let maxValue = -Infinity;
+
+        for (let [key, value] of Object.entries(obj)) {
+            if (value > maxValue) {
+            maxValue = value;
+            maxKey = key;
+         }
+        }
+         return maxKey;
+        }
+        let products = { phone: 700, laptop: 1200, tablet: 300 };
+        console.log(findHighestValueKey(products));
+
+
+         /*Write a function that takes a number as input and returns its factorial using a for loop. */
+        function facts(n) {
+        let fact = 1;
+        for (let i = 1; i <= n; i++) { 
+        fact = fact * i; 
+        console.log(fact); 
+            }
+        }
+        facts(5);
+
+        
+        /* Create a function to check if a given number is prime. Use a loop to perform the check.*/
+        function isPrime(n) {
+        if (n<=0) {
+        console.log(n);
+         }
+        for (let i = 2; i <= n/2; i++) { 
+        if (n % i === 0) {
+            console.log(n + " is not a prime number.");
+            }
+        }
+    
+         console.log(n + " is a prime number.");
+        }
+
+        isPrime(7);
+
+        /* Write a loop to print all even numbers between 1 and 50.*/
+        for(let i=1;i<=50;i++){
+         if(i%2==0){
+        console.log(i+" "+"is even");
+        }else{
+        console.log(i+" "+"is not even")
+            }
+        }
+
+        /* Write a function to calculate the sum of all numbers in an array using a loop.*/
+        let a=[12345];
+        let sum=0;
+        while (a !== 0) {
+        let digit = a % 10;
+        sum += digit;      
+        a = Math.floor(a / 10);
+            }
+        console.log(sum);
+
+        /* Use a loop to reverse a string provided as input.*/
+        let String="String";
+        let b=String.split("").reverse().join("");
+        console.log(b);
+        
+    </script>
+</body>
+</html>
