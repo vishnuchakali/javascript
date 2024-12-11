@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Product List</h1>
+    <button onclick="fetchProducts()">Fetch Products</button>
+    <script>
+        var productsData = [
+            {
+                "id":1,
+                "name":"Laptop",
+                "Price":999.99,
+                "description":"High performance laptop for gaming and work",
+                "category":"Electronics"
+            },
+            {
+                "id":2,
+                "name":"SamrtPhone",
+                "Price":8999.9,
+                "description":"High performance for gaming and work",
+                "category":"Electronics"
+            },
+            {
+                "id":3,
+                "name":"Tab",
+                "Price":899.99,
+                "description":"High performance for gaming and work",
+                "category":"Electronics"
+            }
+        ]
+
+        function fetchProducts(){
+            setTimeout(function() {
+                var products = productsData;
+                var productList = document.createElement('ul');
+                products.forEach(function(product){
+                    var listItem=document.createElement('li');
+                    listItem.textContent = `${product.name} -$${product.Price.toFixed(2)}`;
+                    productList.appendChild(listItem);
+                })
+                document.body.appendChild(productList);
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
